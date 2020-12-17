@@ -1,0 +1,17 @@
+body{
+  margin: 0;
+  padding: 0;
+  background-color: #f1f3f8;
+  height: 100vh;
+}
+
+.notfound{
+  display: flex;
+  align-items:center;
+justify-content:center;
+flex-flow: column;
+background-color: grey;
+height: 100vh;
+font-weight: bold;
+color: white;
+}
