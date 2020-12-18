@@ -7,7 +7,7 @@ function Notfound(){
     const timer = setTimeout(() => {
       history.push('/')
     }, 3500)
-    return () => clearTimeout(timer);
+    return () => clearTimeout(timer)
   }, [])
 
   return(

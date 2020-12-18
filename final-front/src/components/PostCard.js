@@ -1,10 +1,25 @@
 import React from 'react'
 import {Card,Col} from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
+import { useHistory } from 'react-router-dom'
 
 
 
 function PostCard(props){
+
+  const history = useHistory()
+  function handlepostclick(e){
+    e.preventDefault()
+    history.push({
+      pathname: '/Showpost',
+      state: { title:props.title,
+               author : props.author,
+                description: props.description,
+              image:props.image
+            }
+      })
+    }
+
   var str = props.description
   str = str.substring(0,100)
   return(
@@ -17,7 +32,7 @@ function PostCard(props){
     <Card.Text className='mt-auto'>
       {str}
     </Card.Text>
-    <Button variant="primary" className='mt-auto'>Read...</Button>
+    <Button variant="primary" className='mt-auto' onClick={handlepostclick}>Read...</Button>
   </Card.Body>
   </Card>
   </Col>

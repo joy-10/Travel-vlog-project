@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import DefNav from './DefNav'
 import axios from 'axios'
+import Toast from './Toast'
 
 function Signin(){  
   
@@ -13,17 +14,39 @@ function Signin(){
     password:""
   })
 
+  const [toast, setToast] = useState({stat:false})
+
   const history = useHistory()
+
+  function toggleShow() {
+    setToast({stat:false})  
+  }
 
   async function signinpost()
   { 
     
     const res = await axios.post('/api/signin',data)
-    if(!res)
-      return console.log(res)
-    history.push('/')
-   
-    
+    if(res.data.err || !res)
+      {
+        return setToast({
+          stat:true,
+          head:'Error !!',
+          text:res.data.err,
+          class:'toast-fail'
+        })
+      }
+      setToast({
+        stat:true,
+        head:'Success !!',
+        text:res.data,
+        class:'toast-success'
+      })
+
+      const timer = setTimeout(() => {
+        toggleShow()
+        history.push('/')
+      }, 1500)
+      return () => clearTimeout(timer)
   }
 
   function handleChange(e){
@@ -43,6 +66,7 @@ function Signin(){
 <React.Fragment>
 <DefNav/>
 <Container className='mt-4 ml-2 '>
+<Toast data={toast} toggleShow={toggleShow}/>
 <Form className='col-lg-6 offset-lg-3'>
   <Form.Group controlId="email">
     <Form.Label>Email address</Form.Label>

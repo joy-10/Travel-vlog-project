@@ -20,7 +20,7 @@ exports.signup =  async (req,res) => {
         _id:user._id,
          role:user.role},process.env.SECRET) //token creation
         res.cookie('blog',token)
-        res.send('sucess')
+        res.json('sucess')
    
   })
   
@@ -42,10 +42,10 @@ exports.signin = async (req,res) => {
    _id:user._id,
   role:user.role},process.env.SECRET) //token creation
   res.cookie('blog',token)
-  res.send('success')
+  res.json('success')
  
 } catch(err){
-  return res.json('Internal error please try agin after some time')
+  return res.json({err:'Internal error please try agin after some time'})
 
  }
 }

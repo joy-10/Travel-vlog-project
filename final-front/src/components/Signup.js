@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import DefNav from './DefNav'
+import Toast from './Toast'
 
 
 function Signup(){
@@ -16,18 +17,37 @@ function Signup(){
     password:""
   })
 
+  const [toast, setToast] = useState({stat:false})
+
+  function toggleShow() {
+    setToast({stat:false})  
+  }
+
   const history = useHistory()
 
   async function signuppost()
   { 
-    try{
     const res = await axios.post('/api/signup',data)
-    if(res.data.err)
-      return console.log(res.data.err)
-    history.push('/')
-    } catch(err){
-      console.log(err)
-    }
+    if(res.data.err || !res)
+      return setToast({
+        stat:true,
+        head:'Error !!',
+        text:res.data.err,
+        class:'toast-fail'
+      })
+    setToast({
+        stat:true,
+        head:'Success !!',
+        text:res.data,
+        class:'toast-success'
+      })
+
+      const timer = setTimeout(() => {
+        toggleShow()
+        history.push('/')
+      }, 1500)
+      return () => clearTimeout(timer)
+    
     
   }
 
@@ -48,6 +68,7 @@ function Signup(){
 <React.Fragment>
 <DefNav/>
 <Container className='mt-4 ml-2'>
+<Toast data={toast} toggleShow={toggleShow}/>
 <Form className='col-lg-6 offset-lg-3'>
   <Form.Group controlId="name">
     <Form.Label>Firstname</Form.Label>

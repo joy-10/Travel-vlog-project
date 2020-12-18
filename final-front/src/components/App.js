@@ -7,17 +7,19 @@ import CreatePost from './CreatePost'
 import ControlledRoute from './ControlledRoute'
 import PostRoute from './PostRoute'
 import Notfound from './Notfound'
+import Showpost from './Showpost'
 import './style.css'
 import {
   BrowserRouter as Router,
   Switch,
   Route
  } from 'react-router-dom'
-
+ 
 
 function App() {
 
   return (
+    
     <Router>
       <Switch>
         <Route path='/' exact component={Home} />
@@ -28,6 +30,10 @@ function App() {
 
         <PostRoute
           path='/CreatePost' component={CreatePost}/>
+        
+        <Route path='/Showpost'>
+          <Showpost/>
+        </Route>
 
         <Route component={Notfound}/>
       </Switch>

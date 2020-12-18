@@ -6,6 +6,7 @@ import DefNav from './DefNav'
 import axios from 'axios'
 import { useHistory} from 'react-router-dom'
 
+
 function CreatePost (){
 
   const [data, setData] = useState({
