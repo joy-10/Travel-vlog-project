@@ -25,14 +25,10 @@ function CreatePost (){
     formdata.append('description',data.description)
     formdata.append('image',data.image)
     
-    try {
-      const res = await axios.post('http://localhost:8000/api/post',formdata)
-      if(res.data.err)
-      return console.log(res.data.err)
-      history.push('/')
-    } catch (err) {
-      console.log(err)
-    }
+    axios.post('/api/post',formdata)
+    .then((posted)=>{console.log(posted)
+      history.push('/')})
+    .catch((err)=>console.log(err))
     
   }
 

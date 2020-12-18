@@ -9,15 +9,15 @@ function PostCard(props){
   str = str.substring(0,100)
   return(
   <Col lg={3} md={4} sm={12} className='mb-3' >
-  <Card style={{ width: '100%' }}>  
+  <Card style={{ width: '100%' }} className='h-100'>  
   <Card.Img variant="top" src={`http://localhost:8000/uploads/${props.image}`} />
-  <Card.Body>
-    <Card.Title>Title : {props.title}</Card.Title>
-    <Card.Subtitle className="mb-2 text-muted">Author : {props.author}</Card.Subtitle>
-    <Card.Text>
+  <Card.Body className='d-flex flex-column' bg='light'>
+    <Card.Title className='mt-auto'>Title : {props.title}</Card.Title>
+    <Card.Subtitle className="mb-2 text-muted mt-auto">Author : {props.author}</Card.Subtitle>
+    <Card.Text className='mt-auto'>
       {str}
     </Card.Text>
-    <Button variant="primary">Read...</Button>
+    <Button variant="primary" className='mt-auto'>Read...</Button>
   </Card.Body>
   </Card>
   </Col>

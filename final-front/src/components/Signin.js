@@ -17,14 +17,12 @@ function Signin(){
 
   async function signinpost()
   { 
-    try{
+    
     const res = await axios.post('/api/signin',data)
-    if(res.data.err)
-      return console.log(res.data.err)
+    if(!res)
+      return console.log(res)
     history.push('/')
-    } catch(err){
-      console.log(err)
-    }
+   
     
   }
 

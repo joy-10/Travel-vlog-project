@@ -25,7 +25,7 @@ function Home(){
     <Container fluid className='mt-5'>
       <Row >
         {posts.map(post => {
-          return <PostCard title={post.title} author={post.author} image={post.image} description={post.description} />
+          return <PostCard title={post.title} author={post.author} image={post.image} description={post.description} key={post._id} />
         })}
       </Row>
     </Container>
