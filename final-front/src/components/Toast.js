@@ -8,7 +8,7 @@ function Toastalert(props) {
           <Toast.Header className={props.data.class}>
             <strong className="mr-auto" bg='danger'>{props.data.head}</strong>
           </Toast.Header>
-          <Toast.Body>{props.data.text}</Toast.Body> 
+          <Toast.Body >{props.data.text}</Toast.Body> 
         </Toast>
   )
 }

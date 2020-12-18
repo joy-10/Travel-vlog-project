@@ -21,11 +21,11 @@ function PostCard(props){
     }
 
   var str = props.description
-  str = str.substring(0,100)
+  str = str.substring(0,70) + ' . . . . .'
   return(
   <Col lg={3} md={4} sm={12} className='mb-3' >
   <Card style={{ width: '100%' }} className='h-100'>  
-  <Card.Img variant="top" src={`http://localhost:8000/uploads/${props.image}`} />
+  <Card.Img variant="top" src={`http://localhost:8000/uploads/${props.image}`}  />
   <Card.Body className='d-flex flex-column' bg='light'>
     <Card.Title className='mt-auto'>Title : {props.title}</Card.Title>
     <Card.Subtitle className="mb-2 text-muted mt-auto">Author : {props.author}</Card.Subtitle>

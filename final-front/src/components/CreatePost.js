@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import DefNav from './DefNav'
 import axios from 'axios'
+import Toast from './Toast'
 import { useHistory} from 'react-router-dom'
 
 
@@ -16,8 +17,13 @@ function CreatePost (){
     image:null
     
   })
+  const [toast, setToast] = useState({stat:false})
 
   const history = useHistory()
+
+  function toggleShow() {
+    setToast({stat:false})  
+  }
 
   async function postsend(){
     const formdata = new FormData()
@@ -27,9 +33,29 @@ function CreatePost (){
     formdata.append('image',data.image)
     
     axios.post('/api/post',formdata)
-    .then((posted)=>{console.log(posted)
-      history.push('/')})
-    .catch((err)=>console.log(err))
+    .then((res)=>{
+      if(res.data === 'success')
+      {setToast({
+        stat:true,
+        head:'Success !!',
+        text:res.data,
+        class:'toast-success'
+      })
+      const timer = setTimeout(() => {
+        toggleShow()
+        history.push('/')
+      }, 1500)
+      return () => clearTimeout(timer)
+    }
+    setToast({
+      stat:true,
+      head:'Error !!',
+      text:'Try again with valid data',
+      class:'toast-fail'
+    })
+
+      })
+    .catch((err)=> console.log(err))
     
   }
 
@@ -63,6 +89,7 @@ function CreatePost (){
     <React.Fragment>
 <DefNav/>
 <Container className='mt-4 ml-2'>
+<Toast data={toast} toggleShow={toggleShow}/>
 <Form className='col-lg-6 offset-lg-3'>
   <Form.Group controlId="title">
     <Form.Label>Title</Form.Label>

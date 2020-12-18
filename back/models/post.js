@@ -18,7 +18,7 @@ const post = new schema({
     type: String,
     trim: true,
     required: true,
-    maxlength: 2000
+    
   },
   image:{
     type:String,

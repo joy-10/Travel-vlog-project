@@ -17,7 +17,7 @@ color: white;
 }
 
 .card {
-  border: 2px solid black;
+  border: 1px solid black;
   padding: 4px;
 }
 
@@ -34,8 +34,8 @@ line-height: 160%;
 
 .toast{
   position: absolute;
-  bottom: 30%;
-  right: 10%;
+  bottom: 10%;
+  right: 45%;
 }
 
 .toast-fail{
@@ -47,3 +47,4 @@ line-height: 160%;
   background-color: rgb(59, 240, 68);
   color: black;
 }
+
