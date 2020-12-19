@@ -5,7 +5,7 @@ import isAuth from './isAuth'
 function ControlledRoute
 ({ component:Component, ...rest }) {
   return (
-    <Route
+    <Route 
       {...rest}
       render={ props =>
         !isAuth() ? (

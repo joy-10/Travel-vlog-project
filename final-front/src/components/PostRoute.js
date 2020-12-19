@@ -6,7 +6,7 @@ import isAuth from './isAuth'
 function PostRoute
 ({ component:Component, ...rest }) {
   return (
-    <Route
+    <Route 
       {...rest}
       render={ props =>
         isAuth() ? (

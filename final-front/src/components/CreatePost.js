@@ -6,6 +6,7 @@ import DefNav from './DefNav'
 import axios from 'axios'
 import Toast from './Toast'
 import { useHistory} from 'react-router-dom'
+import {postval} from './validation'
 
 
 function CreatePost (){
@@ -18,6 +19,12 @@ function CreatePost (){
     
   })
   const [toast, setToast] = useState({stat:false})
+  const [err,setErr] = useState({
+    title:'',
+    author:'',
+    deacription:'',
+    image:''
+  })
 
   const history = useHistory()
 
@@ -87,7 +94,11 @@ function CreatePost (){
 
   function handleSubmit(e) {
     e.preventDefault()
-    postsend()
+    var res = postval(data)
+    if(res)
+      setErr(res)
+    else
+      postsend()
   }
 
   return(
@@ -99,17 +110,21 @@ function CreatePost (){
   <Form.Group controlId="title">
     <Form.Label>Title</Form.Label>
     <Form.Control type="text" placeholder="Title" onChange={handleChange}/>
+    <span className='ml-2' style={{color: "red"}}>{err.title}</span>
   </Form.Group>
   <Form.Group controlId="author">
     <Form.Label>Author</Form.Label>
     <Form.Control type="text" placeholder="Author" onChange={handleChange} />
+    <span className='ml-2' style={{color: "red"}}>{err.author}</span>
   </Form.Group>
   <Form.Group controlId="description">
     <Form.Label>Description</Form.Label>
-    <Form.Control type="text" placeholder="Deddscription" onChange={handleChange}/>
+    <Form.Control type="text" placeholder="Description" as="textarea" rows={10} onChange={handleChange}/>
+    <span className='ml-2' style={{color: "red"}}>{err.description}</span>
   </Form.Group>
   <Form.Group>
     <Form.File id="image" label="Image" onChange={handleChange}/>
+    <span className='ml-2' style={{color: "red"}}>{err.image}</span>
   </Form.Group>
   <Button variant="primary" type="submit" className='mt-4 mb-3' onClick={handleSubmit}>
     Create

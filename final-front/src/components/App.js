@@ -31,7 +31,7 @@ function App() {
         <PostRoute
           path='/CreatePost' component={CreatePost}/>
         
-        <Route path='/Showpost'>
+        <Route path='/Showpost' >
           <Showpost/>
         </Route>
 

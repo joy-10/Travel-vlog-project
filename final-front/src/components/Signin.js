@@ -6,6 +6,7 @@ import Container from 'react-bootstrap/Container'
 import DefNav from './DefNav'
 import axios from 'axios'
 import Toast from './Toast'
+import {signinval} from './validation'
 
 function Signin(){  
   
@@ -16,6 +17,10 @@ function Signin(){
   })
 
   const [toast, setToast] = useState({stat:false})
+  const [err,setErr] = useState({
+    email:'',
+    password:''
+  })
 
   const history = useHistory()
 
@@ -60,22 +65,28 @@ function Signin(){
 
    function handleSubmit(e){
     e.preventDefault()
+    var res = signinval(data)
+    if(res)
+      setErr(res)
+    else
     signinpost()
    }
   
   return (
 <React.Fragment>
 <DefNav/>
-<Container className='mt-4 ml-2 '>
+<Container className='mt-5 ml-2 '>
 <Toast data={toast} toggleShow={toggleShow}/>
 <Form className='col-lg-6 offset-lg-3'>
   <Form.Group controlId="email">
     <Form.Label>Email address</Form.Label>
     <Form.Control type="email" placeholder="Enter Email" onChange={handleChange} />
+    <span className='ml-2' style={{color: "red"}}>{err.email}</span>
   </Form.Group>
   <Form.Group controlId="password">
     <Form.Label>Password</Form.Label>
     <Form.Control type="password" placeholder="Password" onChange={handleChange}/>
+    <span className='ml-2' style={{color: "red"}}>{err.password}</span>
   </Form.Group>
   <Form.Text as={Link} to='/Signup' > New User ? Get Started</Form.Text>
   <Form.Text as={Link} to='/Forget' className='mt-2 text-muted'>Forget password ?</Form.Text>

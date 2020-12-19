@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import DefNav from './DefNav'
 import Toast from './Toast'
+import {signupval} from './validation'
+
 
 
 function Signup(){
@@ -18,6 +20,11 @@ function Signup(){
   })
 
   const [toast, setToast] = useState({stat:false})
+  const [err,setErr] = useState({
+    name: '',
+    email:'',
+    password:''
+  })
 
   function toggleShow() {
     setToast({stat:false})  
@@ -61,6 +68,10 @@ function Signup(){
 
    function handleSubmit(e){
     e.preventDefault()
+    var res = signupval(data)
+    if(res)
+      setErr(res)
+    else
     signuppost()
    }
 
@@ -73,6 +84,7 @@ function Signup(){
   <Form.Group controlId="name">
     <Form.Label>Firstname</Form.Label>
     <Form.Control type="text" placeholder="FirstName" onChange={handleChange}/>
+    <span className='ml-2' style={{color: "red"}}>{err.name}</span>
   </Form.Group>
   <Form.Group controlId="lastname">
     <Form.Label>Lastname</Form.Label>
@@ -81,10 +93,12 @@ function Signup(){
   <Form.Group controlId="email">
     <Form.Label>Email address</Form.Label>
     <Form.Control type="email" placeholder="Enter Email" onChange={handleChange}/>
+    <span className='ml-2' style={{color: "red"}}>{err.email}</span>
   </Form.Group>
   <Form.Group controlId="password">
     <Form.Label>Password</Form.Label>
     <Form.Control type="password" placeholder="Password" onChange={handleChange} />
+    <span className='ml-2' style={{color: "red"}}>{err.password}</span>
   </Form.Group>
   <Form.Text as={Link} to='/Signin' > Already User ? Let's Go</Form.Text>
   <Button variant="primary" type="submit" className='mt-4 mb-3 font-weight-bold' onClick={handleSubmit}>
