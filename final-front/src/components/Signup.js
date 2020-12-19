@@ -39,7 +39,7 @@ function Signup(){
       return setToast({
         stat:true,
         head:'Error !!',
-        text:res.data.err,
+        text:res.data.err || 'Try Again after some Time',
         class:'toast-fail'
       })
     setToast({

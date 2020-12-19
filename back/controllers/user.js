@@ -19,6 +19,8 @@ exports.signup =  async (req,res) => {
       const token = await jwt.sign({
         _id:user._id,
          role:user.role},process.env.SECRET) //token creation
+        if(!token)
+          return res.json({err:'Internal error please try agin after some time'})
         res.cookie('blog',token)
         res.json('sucess')
    
@@ -31,18 +33,18 @@ exports.signin = async (req,res) => {
   const {email,password} = req.body
   const user = await User.findOne({email:email}) //email exists check
   if(!user)
-    return res.json({err:'email do not exists'})
+    return res.json({err:'Email do not exists'})
   
   const match = await bcrypt.compare(password,user.password) //password check
   if(!match)
-    return res.json({err:'password do not match'})
+    return res.json({err:'Password do not match'})
   
   try
  { const token = await jwt.sign({
    _id:user._id,
   role:user.role},process.env.SECRET) //token creation
   res.cookie('blog',token)
-  res.json('success')
+  res.json('Success')
  
 } catch(err){
   return res.json({err:'Internal error please try agin after some time'})

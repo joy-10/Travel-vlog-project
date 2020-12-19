@@ -39,35 +39,28 @@ function CreatePost (){
     formdata.append('description',data.description)
     formdata.append('image',data.image)
     
-    axios.post('/api/post',formdata)
-    .then((res)=>{
-      if(res.data === 'success')
-      {setToast({
+    const res = await axios.post('/api/post',formdata)
+      if(res.data.err || !res)
+      {
+        return setToast({
+          stat:true,
+          head:'Error !!',
+          text:res.data.err || 'Try Again after some Time',
+          class:'toast-fail'
+        })
+      }
+      setToast({
         stat:true,
         head:'Success !!',
         text:res.data,
         class:'toast-success'
       })
+
       const timer = setTimeout(() => {
         toggleShow()
         history.push('/')
       }, 1500)
       return () => clearTimeout(timer)
-    }
-    setToast({
-      stat:true,
-      head:'Error !!',
-      text:res.data.err,
-      class:'toast-fail'
-    })
-
-      })
-    .catch((err)=> setToast({
-      stat:true,
-      head:'Error !!',
-      text:'Try again with valid data',
-      class:'toast-fail'
-    }))
     
   }
 
