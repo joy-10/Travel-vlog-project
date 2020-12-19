@@ -50,12 +50,17 @@ function CreatePost (){
     setToast({
       stat:true,
       head:'Error !!',
-      text:'Try again with valid data',
+      text:res.data.err,
       class:'toast-fail'
     })
 
       })
-    .catch((err)=> console.log(err))
+    .catch((err)=> setToast({
+      stat:true,
+      head:'Error !!',
+      text:'Try again with valid data',
+      class:'toast-fail'
+    }))
     
   }
 
