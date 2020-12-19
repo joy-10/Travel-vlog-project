@@ -8,6 +8,7 @@ import ControlledRoute from './ControlledRoute'
 import PostRoute from './PostRoute'
 import Notfound from './Notfound'
 import Showpost from './Showpost'
+import Myaccount from './Myaccount'
 import './style.css'
 import {
   BrowserRouter as Router,
@@ -30,6 +31,8 @@ function App() {
 
         <PostRoute
           path='/CreatePost' component={CreatePost}/>
+        
+        <PostRoute path='/Myaccount' component={Myaccount}/>
         
         <Route path='/Showpost' >
           <Showpost/>

@@ -52,4 +52,11 @@ exports.signin = async (req,res) => {
  }
 }
 
+exports.account =(req,res) => {
+  User.findOne({_id:res.locals.id},{ name: 1, lastname: 1 ,email:1 ,posts:1,_id:0})
+  .populate('posts')
+  .then((user)=>res.json(user))
+  .catch((err)=>res.json({err:'Unable to Access Details'}))
+}
+
 

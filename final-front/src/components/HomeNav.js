@@ -11,7 +11,6 @@ function HomeNav (){
     cookies.remove('blog')
     window.location.reload()
   }
-
    return (
    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
   <Navbar.Brand  >
@@ -32,8 +31,10 @@ function HomeNav (){
       <Nav.Link as={Link} to='/Createpost' eventKey="CreatePost">Create - Post</Nav.Link>
     </Nav>
     {isAuth() ? 
-    <Nav variant="pills" defaultActiveKey="Logout">
-      <Nav.Link onSelect={handlelogout} eventKey="Logout" className="mr-3">Log - Out</Nav.Link>
+    <Nav variant="pills" defaultActiveKey="account">
+       <Nav.Link as={Link} to='/Myaccount' eventKey="account" className="mr-3">My account
+       </Nav.Link>
+      <Nav.Link onSelect={handlelogout} eventKey="logout" className="mr-3">Log - Out</Nav.Link>
     </Nav> : null}
 
     {isAuth() ? null : <Nav variant="pills" defaultActiveKey="Signin" >

@@ -33,14 +33,12 @@ function Signin(){
     
     const res = await axios.post('/api/signin',data)
     if(res.data.err || !res)
-      {
         return setToast({
           stat:true,
           head:'Error !!',
           text:res.data.err || 'Try Again after some Time',
           class:'toast-fail'
         })
-      }
       setToast({
         stat:true,
         head:'Success !!',
