@@ -1,14 +1,16 @@
 import React from 'react'
 import {Route,Redirect} from 'react-router-dom'
-import {isAuth} from './isAuth'
+import {isAdmin} from './isAuth'
 
-function ControlledRoute
+
+function AdminRoute
 ({ component:Component, ...rest }) {
+  
   return (
     <Route 
       {...rest}
       render={ props =>
-        !isAuth() ? (
+        isAdmin() ? (
           <Component {...props} />
         ) : (
           <Redirect
@@ -23,5 +25,4 @@ function ControlledRoute
   )
 }
 
-export default ControlledRoute
-
+export default AdminRoute

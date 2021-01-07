@@ -68,6 +68,7 @@ function Signup(){
 
    function handleSubmit(e){
     e.preventDefault()
+    setErr('')
     var res = signupval(data)
     if(res)
       setErr(res)
@@ -79,7 +80,7 @@ function Signup(){
 <React.Fragment>
 <DefNav/>
 <Container className='mt-4 ml-2'>
-<Toast data={toast} toggleShow={toggleShow}/>
+
 <Form className='col-lg-6 offset-lg-3'>
   <Form.Group controlId="name">
     <Form.Label>Firstname</Form.Label>
@@ -109,6 +110,7 @@ function Signup(){
   </Form.Text>
 </Form>
 </Container>
+<Toast className='mt-4' data={toast} toggleShow={toggleShow}/>
 </React.Fragment>
   )
 }

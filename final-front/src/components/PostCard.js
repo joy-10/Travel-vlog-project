@@ -2,6 +2,7 @@ import React from 'react'
 import {Card,Col} from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 
 
@@ -20,8 +21,18 @@ function PostCard(props){
       })
     }
 
+  function handledelete(){
+    axios.delete(`api/postdel/${props.id}`)
+    .then((res)=>{console.log('delete')
+    window.location.reload()
+  })
+  .catch(err=>console.log('problem'))
+    
+  }
+
   var str = props.description
   str = str.substring(0,70) + ' . . . . .'
+
   return(
   <Col lg={3} md={4} sm={12} className='mb-3' >
   <Card style={{ width: '100%' }} className='h-100'>  
@@ -33,6 +44,7 @@ function PostCard(props){
       {str}
     </Card.Text>
     <Button variant="primary" className='mt-auto' onClick={handlepostclick}>Read...</Button>
+    {props.del ? <Button variant="danger" className='mt-2' onClick={handledelete}>Delete</Button> : null}
   </Card.Body>
   </Card>
   </Col>

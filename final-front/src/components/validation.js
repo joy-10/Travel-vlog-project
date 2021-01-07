@@ -64,4 +64,16 @@ function postval(data) {
   } 
   return err
 }
-export {signinval,signupval,postval}
+
+function emailchk(data)
+{
+  err=null
+  email(data.email)
+  return err
+}
+
+function passchk(data) {
+  err=null
+  password(data)
+}
+export {signinval,signupval,postval,emailchk,passchk}

@@ -3,7 +3,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import {Link} from 'react-router-dom'
 import cookies from 'js-cookie'
-import  isAuth from './isAuth'
+import  {isAuth} from './isAuth'
 
 function HomeNav (){ 
 

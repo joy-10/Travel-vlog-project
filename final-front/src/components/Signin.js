@@ -63,6 +63,7 @@ function Signin(){
 
    function handleSubmit(e){
     e.preventDefault()
+    setErr('')
     var res = signinval(data)
     if(res)
       setErr(res)
@@ -74,7 +75,7 @@ function Signin(){
 <React.Fragment>
 <DefNav/>
 <Container className='mt-5 ml-2 '>
-<Toast data={toast} toggleShow={toggleShow}/>
+
 <Form className='col-lg-6 offset-lg-3'>
   <Form.Group controlId="email">
     <Form.Label>Email address</Form.Label>
@@ -96,6 +97,7 @@ function Signin(){
   </Form.Text>
 </Form>
 </Container>
+<Toast data={toast} toggleShow={toggleShow}/>
 </React.Fragment>
   )
 }

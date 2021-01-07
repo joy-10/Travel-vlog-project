@@ -8,13 +8,14 @@ function Home(){
 
   const [posts,setPosts] = useState([])
 
-  useEffect(async ()=> {
-    try{
+  useEffect(()=> {
+    async function fetchdata() {try{
     const res = await axios.get('/api/posts')
     setPosts(res.data)
     } catch(err){
       console.log(err)
-    }
+    }}
+    fetchdata()
     },[])
   return(
   <React.Fragment>

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Route,Redirect} from 'react-router-dom'
-import isAuth from './isAuth'
+import {isAuth} from './isAuth'
 
 
 function PostRoute

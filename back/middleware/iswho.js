@@ -4,8 +4,8 @@ const jwt = require('jsonwebtoken')
 //middleware to check admin or not
 exports.isAdmin = (req,res,next) => {
   if(res.locals.role == 0)
-    return res.json('Not Authorized')
-  
+    return res.json({err:'Not Authorized'})
+  res.json('Sucess')
   next()
 }
 

@@ -30,5 +30,10 @@ exports.getposts = (req,res) => {
       res.json(err)
     res.json(result)
   })
-  
+  }
+
+exports.postdel = (req,res) => {
+  Post.findOneAndDelete({_id:req.params.id})
+  .then(del=>res.json('Success'))
+  .catch(err=>res.json({err:'Unable to delete'}))
 }
