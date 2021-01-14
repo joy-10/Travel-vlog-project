@@ -5,7 +5,8 @@ import {isAdmin} from './isAuth'
 
 function AdminRoute
 ({ component:Component, ...rest }) {
-  
+  const temp = isAdmin()
+  console.log(temp)
   return (
     <Route 
       {...rest}

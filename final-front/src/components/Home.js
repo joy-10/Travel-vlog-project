@@ -9,11 +9,12 @@ function Home(){
   const [posts,setPosts] = useState([])
 
   useEffect(()=> {
-    async function fetchdata() {try{
+    async function fetchdata() {
+      try{
     const res = await axios.get('/api/posts')
     setPosts(res.data)
     } catch(err){
-      console.log(err)
+      alert("something went wrong")
     }}
     fetchdata()
     },[])

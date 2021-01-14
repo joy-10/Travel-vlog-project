@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card,Col} from 'react-bootstrap'
+import {Card,Col,Alert} from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
@@ -23,10 +23,16 @@ function PostCard(props){
 
   function handledelete(){
     axios.delete(`api/postdel/${props.id}`)
-    .then((res)=>{console.log('delete')
+    .then((res)=>{
+    <Alert variant='success'>
+      Deleted
+    </Alert>
     window.location.reload()
   })
-  .catch(err=>console.log('problem'))
+  .catch(err=>
+  <Alert variant='danger'>
+    Problem
+  </Alert>)
     
   }
 

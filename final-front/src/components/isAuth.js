@@ -11,9 +11,12 @@ async function isAdmin() {
 
 
  const res = await axios.get('/api/Isadmin')
- if(res.data === 'Sucess')
+ try {
+   if(res.data === 1)
   return res.data
-return 0
+ } catch(err){
+   return 0
+ }
 }
 
 export {isAuth,isAdmin}

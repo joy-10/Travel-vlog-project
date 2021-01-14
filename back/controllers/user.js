@@ -124,4 +124,18 @@ exports.ForgetResolve = (req,res) => {
   })
 }
 
+exports.getUsers = (req,res) => {
+
+    User.find({},{ name: 1, lastname: 1 ,email:1,role:1})
+    .then(users => res.json(users))
+    .catch((err)=>res.json({err:'Unable to Access Data'}))
+  
+}
+
+exports.deluser = (req,res) => {
+  User.findByIdAndDelete(req.params.id)
+  .then(del=>res.json('Success'))
+  .catch(err=>res.json('failure'))
+}
+
 

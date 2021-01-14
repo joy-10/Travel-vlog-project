@@ -17,7 +17,8 @@ function Myaccount(){
   useEffect( ()=> {
     async function fetchdata(){
       const res = await axios.get('/api/account')
-    if(res.data.err || !res)
+      console.log(res)
+    if(res.data.err || !res || !res.data)
     return setToast({
       stat:true,
       head:'Error !!',

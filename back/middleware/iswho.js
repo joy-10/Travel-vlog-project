@@ -2,11 +2,11 @@ require('dotenv')
 const jwt = require('jsonwebtoken')
 
 //middleware to check admin or not
-exports.isAdmin = (req,res,next) => {
+exports.isAdmin = (req,res) => {
   if(res.locals.role == 0)
-    return res.json({err:'Not Authorized'})
-  res.json('Sucess')
-  next()
+    return res.json(0)
+  res.json(1)
+  
 }
 
 //middleware to check who is logged in
