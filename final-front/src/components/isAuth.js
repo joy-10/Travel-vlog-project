@@ -8,15 +8,13 @@ function isAuth() {
 }
 
 async function isAdmin() {
-
-
- const res = await axios.get('/api/Isadmin')
- try {
-   if(res.data === 1)
-  return res.data
- } catch(err){
-   return 0
- }
+  
+  const res = await axios.get('/api/Isadmin')
+  if(res.data === 1)
+  return 1
+  else
+  return 2
+  
 }
 
 export {isAuth,isAdmin}

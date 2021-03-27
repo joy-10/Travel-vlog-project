@@ -9,8 +9,7 @@ import PostRoute from './PostRoute'
 import Notfound from './Notfound'
 import Showpost from './Showpost'
 import Myaccount from './Myaccount'
-import Admin from './Admin'
-import AdminRoute from './AdminRoute'
+import Adminauth from './Adminauth'
 import ForgetResolve from './ForgetResolve'
 import './style.css'
 import {
@@ -46,7 +45,7 @@ function App() {
           <Showpost/>
         </Route>
 
-        <AdminRoute path='/admin' component={Admin} />
+        <Route path='/admin' component={Adminauth} />
 
         <Route component={Notfound}/>
       </Switch>
